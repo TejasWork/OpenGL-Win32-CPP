@@ -70,8 +70,13 @@ public:
 	void style(const unsigned int& window_style, const bool& client_dimensions = true);
 	void close();
 	Size size();
-    RECTANGLE window_dimensions();
-    void window_dimensions(const RECTANGLE& rectangle);
+    void size(const Size& size);
+    Coordinate position();
+    void position(const Coordinate& coordinate);
+    RECTANGLE dimension();
+    void dimension(const RECTANGLE& rectangle);
+    RECTANGLE window_dimension();
+    void window_dimension(const RECTANGLE& rectangle);
     Coordinate cursor_position();
 	void no_top_most();
 	void top_most();
