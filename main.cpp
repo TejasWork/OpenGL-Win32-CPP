@@ -11,7 +11,7 @@ using namespace std;
 int main(){
     try{
 	
-    Window window("OpenGL with win32");
+    Window window("OpenGL with Win32");
 	window.window_dimensions(DEFAULT_WINDOW_RECTANGLE);
     OpenGLContext gl(window);
     
