@@ -23,6 +23,7 @@ class Coordinate{
     Coordinate operator - (const Coordinate& other);
     Coordinate operator * (const Coordinate& other);
     Coordinate operator / (const Coordinate& other);
+    Coordinate operator = (const int& other);
     Coordinate operator += (const int& other);
     Coordinate operator -= (const int& other);
     Coordinate operator *= (const int& other);
@@ -31,6 +32,24 @@ class Coordinate{
     Coordinate operator - (const int& other);
     Coordinate operator * (const int& other);
     Coordinate operator / (const int& other);
+    Coordinate operator = (const float& other);
+    Coordinate operator += (const float& other);
+    Coordinate operator -= (const float& other);
+    Coordinate operator *= (const float& other);
+    Coordinate operator /= (const float& other);
+    Coordinate operator + (const float& other);
+    Coordinate operator - (const float& other);
+    Coordinate operator * (const float& other);
+    Coordinate operator / (const float& other);
+    Coordinate operator = (const double& other);
+    Coordinate operator += (const double& other);
+    Coordinate operator -= (const double& other);
+    Coordinate operator *= (const double& other);
+    Coordinate operator /= (const double& other);
+    Coordinate operator + (const double& other);
+    Coordinate operator - (const double& other);
+    Coordinate operator * (const double& other);
+    Coordinate operator / (const double& other);
     float distance(const Coordinate& other);
     friend std::ostream& operator << (std::ostream& _ostream_, const Coordinate& _coordinate_);
 };
@@ -53,6 +72,7 @@ class Size{
     Size operator - (const Size& other);
     Size operator * (const Size& other);
     Size operator / (const Size& other);
+    Size operator = (const int& other);
     Size operator += (const int& other);
     Size operator -= (const int& other);
     Size operator *= (const int& other);
@@ -61,6 +81,24 @@ class Size{
     Size operator - (const int& other);
     Size operator * (const int& other);
     Size operator / (const int& other);
+    Size operator = (const float& other);
+    Size operator += (const float& other);
+    Size operator -= (const float& other);
+    Size operator *= (const float& other);
+    Size operator /= (const float& other);
+    Size operator + (const float& other);
+    Size operator - (const float& other);
+    Size operator * (const float& other);
+    Size operator / (const float& other);
+    Size operator = (const double& other);
+    Size operator += (const double& other);
+    Size operator -= (const double& other);
+    Size operator *= (const double& other);
+    Size operator /= (const double& other);
+    Size operator + (const double& other);
+    Size operator - (const double& other);
+    Size operator * (const double& other);
+    Size operator / (const double& other);
     friend std::ostream& operator << (std::ostream& _ostream_, const Size& _size_);
 };
 
@@ -83,6 +121,7 @@ public:
     RECTANGLE operator - (const RECTANGLE& other);
     RECTANGLE operator * (const RECTANGLE& other);
     RECTANGLE operator / (const RECTANGLE& other);
+    RECTANGLE operator = (const int& other);
     RECTANGLE operator += (const int& other);
     RECTANGLE operator -= (const int& other);
     RECTANGLE operator *= (const int& other);
@@ -91,13 +130,31 @@ public:
     RECTANGLE operator - (const int& other);
     RECTANGLE operator * (const int& other);
     RECTANGLE operator / (const int& other);
+    RECTANGLE operator = (const float& other);
+    RECTANGLE operator += (const float& other);
+    RECTANGLE operator -= (const float& other);
+    RECTANGLE operator *= (const float& other);
+    RECTANGLE operator /= (const float& other);
+    RECTANGLE operator + (const float& other);
+    RECTANGLE operator - (const float& other);
+    RECTANGLE operator * (const float& other);
+    RECTANGLE operator / (const float& other);
+    RECTANGLE operator = (const double& other);
+    RECTANGLE operator += (const double& other);
+    RECTANGLE operator -= (const double& other);
+    RECTANGLE operator *= (const double& other);
+    RECTANGLE operator /= (const double& other);
+    RECTANGLE operator + (const double& other);
+    RECTANGLE operator - (const double& other);
+    RECTANGLE operator * (const double& other);
+    RECTANGLE operator / (const double& other);
     friend std::ostream& operator << (std::ostream& _ostream_, const RECTANGLE& _RECTANGLE_);
 };
 
 class Vector2{
     public:
-    float x, y;
-    Vector2(const float& x = 0, const float& y = 0);
+    double x, y;
+    Vector2(const double& x = 0, const double& y = 0);
     Vector2 operator = (const Vector2& other);
     bool operator == (const Vector2& other);
     bool operator < (const Vector2& other);
@@ -112,6 +169,7 @@ class Vector2{
     Vector2 operator - (const Vector2& other);
     Vector2 operator * (const Vector2& other);
     Vector2 operator / (const Vector2& other);
+    Vector2 operator = (const float& other);
     Vector2 operator += (const float& other);
     Vector2 operator -= (const float& other);
     Vector2 operator *= (const float& other);
@@ -120,14 +178,32 @@ class Vector2{
     Vector2 operator - (const float& other);
     Vector2 operator * (const float& other);
     Vector2 operator / (const float& other);
-    float distance(const Vector2& other);
+    Vector2 operator = (const double& other);
+    Vector2 operator += (const double& other);
+    Vector2 operator -= (const double& other);
+    Vector2 operator *= (const double& other);
+    Vector2 operator /= (const double& other);
+    Vector2 operator + (const double& other);
+    Vector2 operator - (const double& other);
+    Vector2 operator * (const double& other);
+    Vector2 operator / (const double& other);
+    Vector2 operator = (const int& other);
+    Vector2 operator += (const int& other);
+    Vector2 operator -= (const int& other);
+    Vector2 operator *= (const int& other);
+    Vector2 operator /= (const int& other);
+    Vector2 operator + (const int& other);
+    Vector2 operator - (const int& other);
+    Vector2 operator * (const int& other);
+    Vector2 operator / (const int& other);
+    double distance(const Vector2& other);
     friend std::ostream& operator << (std::ostream& _ostream_, const Vector2& _vector2_);
 };
 
 class Vector3{
     public:
-    float x, y, z;
-    Vector3(const float& x = 0, const float& y = 0, const float& z = 0);
+    double x, y, z;
+    Vector3(const double& x = 0, const double& y = 0, const double& z = 0);
     Vector3 operator = (const Vector3& other);
     bool operator == (const Vector3& other);
     bool operator < (const Vector3& other);
@@ -142,7 +218,7 @@ class Vector3{
     Vector3 operator - (const Vector3& other);
     Vector3 operator * (const Vector3& other);
     Vector3 operator / (const Vector3& other);
-    float distance(const Vector3& other);
+    double distance(const Vector3& other);
     Vector3 operator = (const Vector2& other);
     bool operator == (const Vector2& other);
     bool operator < (const Vector2& other);
@@ -157,6 +233,7 @@ class Vector3{
     Vector3 operator - (const Vector2& other);
     Vector3 operator * (const Vector2& other);
     Vector3 operator / (const Vector2& other);
+    Vector3 operator = (const float& other);
     Vector3 operator += (const float& other);
     Vector3 operator -= (const float& other);
     Vector3 operator *= (const float& other);
@@ -165,14 +242,32 @@ class Vector3{
     Vector3 operator - (const float& other);
     Vector3 operator * (const float& other);
     Vector3 operator / (const float& other);
-    float distance(const Vector2& other);
+    Vector3 operator = (const double& other);
+    Vector3 operator += (const double& other);
+    Vector3 operator -= (const double& other);
+    Vector3 operator *= (const double& other);
+    Vector3 operator /= (const double& other);
+    Vector3 operator + (const double& other);
+    Vector3 operator - (const double& other);
+    Vector3 operator * (const double& other);
+    Vector3 operator / (const double& other);
+    Vector3 operator = (const int& other);
+    Vector3 operator += (const int& other);
+    Vector3 operator -= (const int& other);
+    Vector3 operator *= (const int& other);
+    Vector3 operator /= (const int& other);
+    Vector3 operator + (const int& other);
+    Vector3 operator - (const int& other);
+    Vector3 operator * (const int& other);
+    Vector3 operator / (const int& other);
+    double distance(const Vector2& other);
     friend std::ostream& operator << (std::ostream& _ostream_, const Vector3& _vector3_);
 };
 
 class Color{
     public:
-    float r, g, b, a;
-    Color(const float& r, const float& g, const float& b, const float& a = 1.0f);
+    double r, g, b, a;
+    Color(const double& r, const double& g, const double& b, const double& a = 1.0f);
     Color operator = (const Color& other);
     Color operator += (const Color& other);
     Color operator -= (const Color& other);
@@ -187,6 +282,33 @@ class Color{
     bool operator <= (const Color& other);
     bool operator >= (const Color& other);
     bool operator == (const Color& other);
+    Color operator = (const int& other);
+    Color operator += (const int& other);
+    Color operator -= (const int& other);
+    Color operator *= (const int& other);
+    Color operator /= (const int& other);
+    Color operator + (const int& other);
+    Color operator - (const int& other);
+    Color operator * (const int& other);
+    Color operator / (const int& other);
+    Color operator = (const double& other);
+    Color operator += (const double& other);
+    Color operator -= (const double& other);
+    Color operator *= (const double& other);
+    Color operator /= (const double& other);
+    Color operator + (const double& other);
+    Color operator - (const double& other);
+    Color operator * (const double& other);
+    Color operator / (const double& other);
+    Color operator = (const float& other);
+    Color operator += (const float& other);
+    Color operator -= (const float& other);
+    Color operator *= (const float& other);
+    Color operator /= (const float& other);
+    Color operator + (const float& other);
+    Color operator - (const float& other);
+    Color operator * (const float& other);
+    Color operator / (const float& other);
     friend std::ostream& operator << (std::ostream& _ostream_, const Color& _color_);
 };
 

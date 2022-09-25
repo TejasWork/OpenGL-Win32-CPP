@@ -2,7 +2,7 @@
 #include <math.h>
 using namespace std;
 
-Vector2::Vector2(const float& x, const float& y)
+Vector2::Vector2(const double& x, const double& y)
 {
     this->x = x;
     this->y = y;
@@ -12,6 +12,27 @@ Vector2 Vector2::operator = (const Vector2& other)
 {
     this->x = other.x;
     this->y = other.y;
+    return Vector2(this->x, this->y);
+}
+
+Vector2 Vector2::operator = (const int& other)
+{
+    this->x = other;
+    this->y = other;
+    return Vector2(this->x, this->y);
+}
+
+Vector2 Vector2::operator = (const float& other)
+{
+    this->x = other;
+    this->y = other;
+    return Vector2(this->x, this->y);
+}
+
+Vector2 Vector2::operator = (const double& other)
+{
+    this->x = other;
+    this->y = other;
     return Vector2(this->x, this->y);
 }
 
@@ -132,7 +153,103 @@ Vector2 Vector2::operator / (const float& other)
     return Vector2(this->x / other, this->y / other);
 }
 
-float Vector2::distance(const Vector2& other){
+Vector2 Vector2::operator += (const double& other)
+{
+    this->x += other;
+    this->y += other;
+    return Vector2(this->x, this->y);
+}
+
+Vector2 Vector2::operator -= (const double& other)
+{
+    this->x -= other;
+    this->y -= other;
+    return Vector2(this->x, this->y);
+}
+
+Vector2 Vector2::operator *= (const double& other)
+{
+    this->x *= other;
+    this->y *= other;
+    return Vector2(this->x, this->y);
+}
+
+Vector2 Vector2::operator /= (const double& other)
+{
+    this->x /= other;
+    this->y /= other;
+    return Vector2(this->x, this->y);
+}
+
+Vector2 Vector2::operator + (const double& other)
+{
+    return Vector2(this->x + other, this->y + other);
+}
+
+Vector2 Vector2::operator - (const double& other)
+{
+    return Vector2(this->x - other, this->y - other);
+}
+
+Vector2 Vector2::operator * (const double& other)
+{
+    return Vector2(this->x * other, this->y * other);
+}
+
+Vector2 Vector2::operator / (const double& other)
+{
+    return Vector2(this->x / other, this->y / other);
+}
+
+Vector2 Vector2::operator += (const int& other)
+{
+    this->x += other;
+    this->y += other;
+    return Vector2(this->x, this->y);
+}
+
+Vector2 Vector2::operator -= (const int& other)
+{
+    this->x -= other;
+    this->y -= other;
+    return Vector2(this->x, this->y);
+}
+
+Vector2 Vector2::operator *= (const int& other)
+{
+    this->x *= other;
+    this->y *= other;
+    return Vector2(this->x, this->y);
+}
+
+Vector2 Vector2::operator /= (const int& other)
+{
+    this->x /= other;
+    this->y /= other;
+    return Vector2(this->x, this->y);
+}
+
+Vector2 Vector2::operator + (const int& other)
+{
+    return Vector2(this->x + other, this->y + other);
+}
+
+Vector2 Vector2::operator - (const int& other)
+{
+    return Vector2(this->x - other, this->y - other);
+}
+
+Vector2 Vector2::operator * (const int& other)
+{
+    return Vector2(this->x * other, this->y * other);
+}
+
+Vector2 Vector2::operator / (const int& other)
+{
+    return Vector2(this->x / other, this->y / other);
+}
+
+double Vector2::distance(const Vector2& other){
     return sqrt(pow(other.x - this->x, 2) + pow(other.y - this->y, 2));
 }
 
@@ -141,7 +258,7 @@ std::ostream& operator << (std::ostream& _ostream_, const Vector2& _vector2_){
     return _ostream_;
 }
 
-Vector3::Vector3(const float& x, const float& y, const float& z)
+Vector3::Vector3(const double& x, const double& y, const double& z)
 {
     this->x = x;
     this->y = y;
@@ -153,6 +270,30 @@ Vector3 Vector3::operator = (const Vector3& other)
     this->x = other.x;
     this->y = other.y;
     this->z = other.z;
+    return Vector3(this->x, this->y, this->z);
+}
+
+Vector3 Vector3::operator = (const int& other)
+{
+    this->x = other;
+    this->y = other;
+    this->z = other;
+    return Vector3(this->x, this->y, this->z);
+}
+
+Vector3 Vector3::operator = (const double& other)
+{
+    this->x = other;
+    this->y = other;
+    this->z = other;
+    return Vector3(this->x, this->y, this->z);
+}
+
+Vector3 Vector3::operator = (const float& other)
+{
+    this->x = other;
+    this->y = other;
+    this->z = other;
     return Vector3(this->x, this->y, this->z);
 }
 
@@ -221,6 +362,22 @@ Vector3 Vector3::operator += (const float& other)
     return Vector3(this->x, this->y, this->z);
 }
 
+Vector3 Vector3::operator += (const double& other)
+{
+    this->x += other;
+    this->y += other;
+    this->z += other;
+    return Vector3(this->x, this->y, this->z);
+}
+
+Vector3 Vector3::operator += (const int& other)
+{
+    this->x += other;
+    this->y += other;
+    this->z += other;
+    return Vector3(this->x, this->y, this->z);
+}
+
 Vector3 Vector3::operator += (const Vector2& other)
 {
     this->x += other.x;
@@ -237,6 +394,22 @@ Vector3 Vector3::operator -= (const Vector3& other)
 }
 
 Vector3 Vector3::operator -= (const float& other)
+{
+    this->x -= other;
+    this->y -= other;
+    this->z -= other;
+    return Vector3(this->x, this->y, this->z);
+}
+
+Vector3 Vector3::operator -= (const int& other)
+{
+    this->x -= other;
+    this->y -= other;
+    this->z -= other;
+    return Vector3(this->x, this->y, this->z);
+}
+
+Vector3 Vector3::operator -= (const double& other)
 {
     this->x -= other;
     this->y -= other;
@@ -267,6 +440,22 @@ Vector3 Vector3::operator *= (const float& other)
     return Vector3(this->x, this->y, this->z);
 }
 
+Vector3 Vector3::operator *= (const int& other)
+{
+    this->x *= other;
+    this->y *= other;
+    this->z *= other;
+    return Vector3(this->x, this->y, this->z);
+}
+
+Vector3 Vector3::operator *= (const double& other)
+{
+    this->x *= other;
+    this->y *= other;
+    this->z *= other;
+    return Vector3(this->x, this->y, this->z);
+}
+
 Vector3 Vector3::operator *= (const Vector2& other)
 {
     this->x *= other.x;
@@ -283,6 +472,22 @@ Vector3 Vector3::operator /= (const Vector3& other)
 }
 
 Vector3 Vector3::operator /= (const float& other)
+{
+    this->x /= other;
+    this->y /= other;
+    this->z /= other;
+    return Vector3(this->x, this->y, this->z);
+}
+
+Vector3 Vector3::operator /= (const int& other)
+{
+    this->x /= other;
+    this->y /= other;
+    this->z /= other;
+    return Vector3(this->x, this->y, this->z);
+}
+
+Vector3 Vector3::operator /= (const double& other)
 {
     this->x /= other;
     this->y /= other;
@@ -307,6 +512,16 @@ Vector3 Vector3::operator + (const float& other)
     return Vector3(this->x + other, this->y + other, this->z + other);
 }
 
+Vector3 Vector3::operator + (const double& other)
+{
+    return Vector3(this->x + other, this->y + other, this->z + other);
+}
+
+Vector3 Vector3::operator + (const int& other)
+{
+    return Vector3(this->x + other, this->y + other, this->z + other);
+}
+
 Vector3 Vector3::operator + (const Vector2& other)
 {
     return Vector3(this->x + other.x, this->y + other.y);
@@ -318,6 +533,16 @@ Vector3 Vector3::operator - (const Vector3& other)
 }
 
 Vector3 Vector3::operator - (const float& other)
+{
+    return Vector3(this->x - other, this->y - other, this->z - other);
+}
+
+Vector3 Vector3::operator - (const double& other)
+{
+    return Vector3(this->x - other, this->y - other, this->z - other);
+}
+
+Vector3 Vector3::operator - (const int& other)
 {
     return Vector3(this->x - other, this->y - other, this->z - other);
 }
@@ -337,6 +562,16 @@ Vector3 Vector3::operator * (const float& other)
     return Vector3(this->x * other, this->y * other, this->z * other);
 }
 
+Vector3 Vector3::operator * (const double& other)
+{
+    return Vector3(this->x * other, this->y * other, this->z * other);
+}
+
+Vector3 Vector3::operator * (const int& other)
+{
+    return Vector3(this->x * other, this->y * other, this->z * other);
+}
+
 Vector3 Vector3::operator * (const Vector2& other)
 {
     return Vector3(this->x * other.x, this->y * other.y);
@@ -352,16 +587,26 @@ Vector3 Vector3::operator / (const float& other)
     return Vector3(this->x / other, this->y / other, this->z / other);
 }
 
+Vector3 Vector3::operator / (const int& other)
+{
+    return Vector3(this->x / other, this->y / other, this->z / other);
+}
+
+Vector3 Vector3::operator / (const double& other)
+{
+    return Vector3(this->x / other, this->y / other, this->z / other);
+}
+
 Vector3 Vector3::operator / (const Vector2& other)
 {
     return Vector3(this->x / other.x, this->y / other.y);
 }
 
-float Vector3::distance(const Vector3& other){
+double Vector3::distance(const Vector3& other){
     return sqrt(pow(other.x - this->x, 2) + pow(other.y - this->y, 2) + pow(other.z - this->z, 2));
 }
 
-float Vector3::distance(const Vector2& other){
+double Vector3::distance(const Vector2& other){
     return sqrt(pow(other.x - this->x, 2) + pow(other.y - this->y, 2));
 }
 
@@ -370,7 +615,7 @@ std::ostream& operator << (std::ostream& _ostream_, const Vector3& _vector3_){
     return _ostream_;
 }
 
-Color::Color(const float& r, const float& g, const float& b, const float& a){
+Color::Color(const double& r, const double& g, const double& b, const double& a){
     this->r = r;
     this->g = g;
     this->b = b;
@@ -433,6 +678,174 @@ Color Color::operator / (const Color& other){
     return Color(this->r / other.r, this->g / other.g, this->b / other.b, this->a / other.a);
 }
 
+Color Color::operator = (const int& other){
+    this->r = other;
+    this->g = other;
+    this->b = other;
+    this->a = other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator += (const int& other){
+    this->r += other;
+    this->b += other;
+    this->a += other;
+    this->g += other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator -= (const int& other){
+    this->r -= other;
+    this->g -= other;
+    this->b -= other;
+    this->a -= other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator *= (const int& other){
+    this->r *= other;
+    this->g *= other;
+    this->b *= other;
+    this->a *= other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator /= (const int& other){
+    this->r /= other;
+    this->g /= other;
+    this->b /= other;
+    this->a /= other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator + (const int& other){
+    return Color(this->r + other, this->g + other, this->b + other, this->a + other);
+}
+
+Color Color::operator - (const int& other){
+    return Color(this->r - other, this->g - other, this->b - other, this->a - other);
+}
+
+Color Color::operator * (const int& other){
+    return Color(this->r * other, this->g * other, this->b * other, this->a * other);
+}
+
+Color Color::operator / (const int& other){
+    return Color(this->r / other, this->g / other, this->b / other, this->a / other);
+}
+
+Color Color::operator = (const float& other){
+    this->r = other;
+    this->g = other;
+    this->b = other;
+    this->a = other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator += (const float& other){
+    this->r += other;
+    this->b += other;
+    this->a += other;
+    this->g += other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator -= (const float& other){
+    this->r -= other;
+    this->g -= other;
+    this->b -= other;
+    this->a -= other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator *= (const float& other){
+    this->r *= other;
+    this->g *= other;
+    this->b *= other;
+    this->a *= other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator /= (const float& other){
+    this->r /= other;
+    this->g /= other;
+    this->b /= other;
+    this->a /= other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator + (const float& other){
+    return Color(this->r + other, this->g + other, this->b + other, this->a + other);
+}
+
+Color Color::operator - (const float& other){
+    return Color(this->r - other, this->g - other, this->b - other, this->a - other);
+}
+
+Color Color::operator * (const float& other){
+    return Color(this->r * other, this->g * other, this->b * other, this->a * other);
+}
+
+Color Color::operator / (const float& other){
+    return Color(this->r / other, this->g / other, this->b / other, this->a / other);
+}
+
+Color Color::operator = (const double& other){
+    this->r = other;
+    this->g = other;
+    this->b = other;
+    this->a = other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator += (const double& other){
+    this->r += other;
+    this->b += other;
+    this->a += other;
+    this->g += other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator -= (const double& other){
+    this->r -= other;
+    this->g -= other;
+    this->b -= other;
+    this->a -= other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator *= (const double& other){
+    this->r *= other;
+    this->g *= other;
+    this->b *= other;
+    this->a *= other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator /= (const double& other){
+    this->r /= other;
+    this->g /= other;
+    this->b /= other;
+    this->a /= other;
+    return Color(this->r, this->g, this->b, this->a);
+}
+
+Color Color::operator + (const double& other){
+    return Color(this->r + other, this->g + other, this->b + other, this->a + other);
+}
+
+Color Color::operator - (const double& other){
+    return Color(this->r - other, this->g - other, this->b - other, this->a - other);
+}
+
+Color Color::operator * (const double& other){
+    return Color(this->r * other, this->g * other, this->b * other, this->a * other);
+}
+
+Color Color::operator / (const double& other){
+    return Color(this->r / other, this->g / other, this->b / other, this->a / other);
+}
+
 bool Color::operator < (const Color& other){
     return this->r < other.r && this->g < other.g && this->b < other.b && this->a < other.a;
 }
@@ -466,6 +879,24 @@ Size::Size(const int& width, const int& height){
 Size Size::operator = (const Size& other){
     this->width = other.width;
     this->height = other.height;
+    return Size(this->width, this->height);
+}
+
+Size Size::operator = (const float& other){
+    this->width = other;
+    this->height = other;
+    return Size(this->width, this->height);
+}
+
+Size Size::operator = (const int& other){
+    this->width = other;
+    this->height = other;
+    return Size(this->width, this->height);
+}
+
+Size Size::operator = (const double& other){
+    this->width = other;
+    this->height = other;
     return Size(this->width, this->height);
 }
 
@@ -569,6 +1000,86 @@ Size Size::operator / (const int& other){
     return Size(this->width / other, this->height / other);
 }
 
+Size Size::operator += (const float& other){
+    this->width += other;
+    this->height += other;
+    return Size(this->width, this->height);
+}
+
+Size Size::operator -= (const float& other){
+    this->width -= other;
+    this->height -= other;
+    return Size(this->width, this->height);
+}
+
+Size Size::operator *= (const float& other){
+    this->width *= other;
+    this->height *= other;
+    return Size(this->width, this->height);
+}
+
+Size Size::operator /= (const float& other){
+    this->width /= other;
+    this->height /= other;
+    return Size(this->width, this->height);
+}
+
+Size Size::operator + (const float& other){
+    return Size(this->width + other, this->height + other);
+}
+
+Size Size::operator - (const float& other){
+    return Size(this->width - other, this->height - other);
+}
+
+Size Size::operator * (const float& other){
+    return Size(this->width * other, this->height * other);
+}
+
+Size Size::operator / (const float& other){
+    return Size(this->width / other, this->height / other);
+}
+
+Size Size::operator += (const double& other){
+    this->width += other;
+    this->height += other;
+    return Size(this->width, this->height);
+}
+
+Size Size::operator -= (const double& other){
+    this->width -= other;
+    this->height -= other;
+    return Size(this->width, this->height);
+}
+
+Size Size::operator *= (const double& other){
+    this->width *= other;
+    this->height *= other;
+    return Size(this->width, this->height);
+}
+
+Size Size::operator /= (const double& other){
+    this->width /= other;
+    this->height /= other;
+    return Size(this->width, this->height);
+}
+
+Size Size::operator + (const double& other){
+    return Size(this->width + other, this->height + other);
+}
+
+Size Size::operator - (const double& other){
+    return Size(this->width - other, this->height - other);
+}
+
+Size Size::operator * (const double& other){
+    return Size(this->width * other, this->height * other);
+}
+
+Size Size::operator / (const double& other){
+    return Size(this->width / other, this->height / other);
+}
+
 std::ostream& operator << (std::ostream& _ostream_, const Size& _size_){
     _ostream_ << _size_.width << " " << _size_.height;
     return _ostream_;
@@ -582,6 +1093,24 @@ Coordinate::Coordinate(const int& x, const int& y){
 Coordinate Coordinate::operator = (const Coordinate& other){
     this->x = other.x;
     this->y = other.y;
+    return Coordinate(this->x, this->y);
+}
+
+Coordinate Coordinate::operator = (const double& other){
+    this->x = other;
+    this->y = other;
+    return Coordinate(this->x, this->y);
+}
+
+Coordinate Coordinate::operator = (const float& other){
+    this->x = other;
+    this->y = other;
+    return Coordinate(this->x, this->y);
+}
+
+Coordinate Coordinate::operator = (const int& other){
+    this->x = other;
+    this->y = other;
     return Coordinate(this->x, this->y);
 }
 
@@ -685,6 +1214,86 @@ Coordinate Coordinate::operator / (const int& other){
     return Coordinate(this->x / other, this->y / other);
 }
 
+Coordinate Coordinate::operator += (const float& other){
+    this->x += other;
+    this->y += other;
+    return Coordinate(this->x, this->y);
+}
+
+Coordinate Coordinate::operator -= (const float& other){
+    this->x -= other;
+    this->y -= other;
+    return Coordinate(this->x, this->y);
+}
+
+Coordinate Coordinate::operator *= (const float& other){
+    this->x *= other;
+    this->y *= other;
+    return Coordinate(this->x, this->y);
+}
+
+Coordinate Coordinate::operator /= (const float& other){
+    this->x /= other;
+    this->y /= other;
+    return Coordinate(this->x, this->y);
+}
+
+Coordinate Coordinate::operator + (const float& other){
+    return Coordinate(this->x + other, this->y + other);
+}
+
+Coordinate Coordinate::operator - (const float& other){
+    return Coordinate(this->x - other, this->y - other);
+}
+
+Coordinate Coordinate::operator * (const float& other){
+    return Coordinate(this->x * other, this->y * other);
+}
+
+Coordinate Coordinate::operator / (const float& other){
+    return Coordinate(this->x / other, this->y / other);
+}
+
+Coordinate Coordinate::operator += (const double& other){
+    this->x += other;
+    this->y += other;
+    return Coordinate(this->x, this->y);
+}
+
+Coordinate Coordinate::operator -= (const double& other){
+    this->x -= other;
+    this->y -= other;
+    return Coordinate(this->x, this->y);
+}
+
+Coordinate Coordinate::operator *= (const double& other){
+    this->x *= other;
+    this->y *= other;
+    return Coordinate(this->x, this->y);
+}
+
+Coordinate Coordinate::operator /= (const double& other){
+    this->x /= other;
+    this->y /= other;
+    return Coordinate(this->x, this->y);
+}
+
+Coordinate Coordinate::operator + (const double& other){
+    return Coordinate(this->x + other, this->y + other);
+}
+
+Coordinate Coordinate::operator - (const double& other){
+    return Coordinate(this->x - other, this->y - other);
+}
+
+Coordinate Coordinate::operator * (const double& other){
+    return Coordinate(this->x * other, this->y * other);
+}
+
+Coordinate Coordinate::operator / (const double& other){
+    return Coordinate(this->x / other, this->y / other);
+}
+
 float Coordinate::distance(const Coordinate& other){
     return sqrt(pow(other.x - this->x, 2) + pow(other.y - this->y, 2));
 }
@@ -713,6 +1322,30 @@ RECTANGLE RECTANGLE::operator = (const RECTANGLE& other){
     this->y = other.y;
     this->width = other.width;
     this->height = other.height;
+    return RECTANGLE(this->x, this->y, this->width, this->height);
+}
+
+RECTANGLE RECTANGLE::operator = (const double& other){
+    this->x = other;
+    this->y = other;
+    this->width = other;
+    this->height = other;
+    return RECTANGLE(this->x, this->y, this->width, this->height);
+}
+
+RECTANGLE RECTANGLE::operator = (const int& other){
+    this->x = other;
+    this->y = other;
+    this->width = other;
+    this->height = other;
+    return RECTANGLE(this->x, this->y, this->width, this->height);
+}
+
+RECTANGLE RECTANGLE::operator = (const float& other){
+    this->x = other;
+    this->y = other;
+    this->width = other;
+    this->height = other;
     return RECTANGLE(this->x, this->y, this->width, this->height);
 }
 
@@ -829,6 +1462,102 @@ RECTANGLE RECTANGLE::operator * (const int& other){
 }
 
 RECTANGLE RECTANGLE::operator / (const int& other){
+    return RECTANGLE(this->x / other, this->y / other, this->width / other, this->height / other);
+}
+
+RECTANGLE RECTANGLE::operator += (const float& other){
+    this->x += other;
+    this->y += other;
+    this->width += other;
+    this->height += other;
+    return RECTANGLE(this->x, this->y, this->width, this->height);
+}
+
+RECTANGLE RECTANGLE::operator -= (const float& other){
+    this->x -= other;
+    this->y -= other;
+    this->width -= other;
+    this->height -= other;
+    return RECTANGLE(this->x, this->y, this->width, this->height);
+}
+
+RECTANGLE RECTANGLE::operator *= (const float& other){
+    this->x *= other;
+    this->y *= other;
+    this->width *= other;
+    this->height *= other;
+    return RECTANGLE(this->x, this->y, this->width, this->height);
+}
+
+RECTANGLE RECTANGLE::operator /= (const float& other){
+    this->x /= other;
+    this->y /= other;
+    this->width /= other;
+    this->height /= other;
+    return RECTANGLE(this->x, this->y, this->width, this->height);
+}
+
+RECTANGLE RECTANGLE::operator + (const float& other){
+    return RECTANGLE(this->x + other, this->y + other, this->width + other, this->height + other);
+}
+
+RECTANGLE RECTANGLE::operator - (const float& other){
+    return RECTANGLE(this->x - other, this->y - other, this->width - other, this->height - other);
+}
+
+RECTANGLE RECTANGLE::operator * (const float& other){
+    return RECTANGLE(this->x * other, this->y * other, this->width * other, this->height * other);
+}
+
+RECTANGLE RECTANGLE::operator / (const float& other){
+    return RECTANGLE(this->x / other, this->y / other, this->width / other, this->height / other);
+}
+
+RECTANGLE RECTANGLE::operator += (const double& other){
+    this->x += other;
+    this->y += other;
+    this->width += other;
+    this->height += other;
+    return RECTANGLE(this->x, this->y, this->width, this->height);
+}
+
+RECTANGLE RECTANGLE::operator -= (const double& other){
+    this->x -= other;
+    this->y -= other;
+    this->width -= other;
+    this->height -= other;
+    return RECTANGLE(this->x, this->y, this->width, this->height);
+}
+
+RECTANGLE RECTANGLE::operator *= (const double& other){
+    this->x *= other;
+    this->y *= other;
+    this->width *= other;
+    this->height *= other;
+    return RECTANGLE(this->x, this->y, this->width, this->height);
+}
+
+RECTANGLE RECTANGLE::operator /= (const double& other){
+    this->x /= other;
+    this->y /= other;
+    this->width /= other;
+    this->height /= other;
+    return RECTANGLE(this->x, this->y, this->width, this->height);
+}
+
+RECTANGLE RECTANGLE::operator + (const double& other){
+    return RECTANGLE(this->x + other, this->y + other, this->width + other, this->height + other);
+}
+
+RECTANGLE RECTANGLE::operator - (const double& other){
+    return RECTANGLE(this->x - other, this->y - other, this->width - other, this->height - other);
+}
+
+RECTANGLE RECTANGLE::operator * (const double& other){
+    return RECTANGLE(this->x * other, this->y * other, this->width * other, this->height * other);
+}
+
+RECTANGLE RECTANGLE::operator / (const double& other){
     return RECTANGLE(this->x / other, this->y / other, this->width / other, this->height / other);
 }
 

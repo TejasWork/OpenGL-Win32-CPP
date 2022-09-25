@@ -1,5 +1,7 @@
 @echo off
-@REM you need call vcvars64.bat before executing this batch file or execute it in developer command prompt for vs.
+if [%1]==[] goto compile-run
+call "C:\\Program Files\\Microsoft Visual Studio\\%%1%\\Community\\VC\\Auxiliary\\Build\\vcvars64.bat"
+:compile-run
 if exist main.exe (
     del main.exe
 )

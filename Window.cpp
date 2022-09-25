@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Size GetPrimaryMonitorWidth(){
+Size GetPrimaryMonitorSize(){
     return Size(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
 }
 

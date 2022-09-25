@@ -40,7 +40,7 @@
 #define MESSAGE_BOX_SYSTEM_MODAL MB_SYSTEMMODAL
 #define MESSAGE_BOX_TASK_MODEL MB_TASKMODAL
 
-Size GetPrimaryMonitorWidth();
+Size GetPrimaryMonitorSize();
 void CursorPosition(const Coordinate& coordinate);
 Coordinate CursorPosition();
 

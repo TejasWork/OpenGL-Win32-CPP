@@ -9,10 +9,10 @@ using namespace std;
 #define DEFAULT_WINDOW_RECTANGLE RECTANGLE(Coordinate(200, 150), Size(16, 9)*62)
 
 int main(){
-    try{
+	try{
 	
     Window window("OpenGL with Win32");
-	window.window_dimension(DEFAULT_WINDOW_RECTANGLE);
+	window.dimension(DEFAULT_WINDOW_RECTANGLE);
     OpenGLContext gl(window);
     
 	Coordinate cursor_position;
