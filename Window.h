@@ -41,6 +41,7 @@
 #define MESSAGE_BOX_TASK_MODEL MB_TASKMODAL
 
 Size GetPrimaryMonitorSize();
+RECTANGLE CenterWindowDimension(const float& scale = 0.65f);
 void CursorPosition(const Coordinate& coordinate);
 Coordinate CursorPosition();
 

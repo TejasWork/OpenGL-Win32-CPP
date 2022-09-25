@@ -6,13 +6,13 @@
 using namespace std;
 
 #define ARROW_HCURSOR LoadCursorA(nullptr, MAKEINTRESOURCEA(32512))
-#define DEFAULT_WINDOW_RECTANGLE RECTANGLE(Coordinate(200, 150), Size(16, 9)*62)
 
 int main(){
+
 	try{
 	
     Window window("OpenGL with Win32");
-	window.dimension(DEFAULT_WINDOW_RECTANGLE);
+	window.dimension(CenterWindowDimension());
     OpenGLContext gl(window);
     
 	Coordinate cursor_position;

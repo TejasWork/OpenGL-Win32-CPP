@@ -6,6 +6,17 @@ Size GetPrimaryMonitorSize(){
     return Size(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
 }
 
+RECTANGLE CenterWindowDimension(const float& scale){
+	Size monitor_size = GetPrimaryMonitorSize();
+	Size client_size = monitor_size*scale;
+	return RECTANGLE(
+		monitor_size.width/2-client_size.width/2,
+		monitor_size.height/2-client_size.height/2,
+		client_size.width,
+		client_size.height
+	);
+}
+
 void CursorPosition(const Coordinate& coordinate){
     if (!SetCursorPos(coordinate.x, coordinate.y)) throw "CursorPosition: Error setting cursor position.";
 }
