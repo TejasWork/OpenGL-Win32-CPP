@@ -3,15 +3,15 @@
 #include "OpenGL.h"
 #include "Trigonometry.h"
 #include <vector>
+#include <glm/glm.hpp>
 using namespace std;
 
 #define ARROW_HCURSOR LoadCursorA(nullptr, MAKEINTRESOURCEA(32512))
 
 int main(){
-
 	try{
-	
-    Window window("OpenGL with Win32");
+
+	Window window("hwll");
 	window.dimension(CenterWindowDimension());
     OpenGLContext gl(window);
     
@@ -42,6 +42,9 @@ int main(){
 	window.show();
 	while (!window.closed) {
 		client_size = window.size();
+
+		try{
+
 		cursor_position = window.cursor_position();
 
     	vertices[0] = radius*cosine(-135.0+angle); vertices[1] = radius*sine(-135.0+angle);
@@ -72,6 +75,11 @@ int main(){
 			}
 		}
 		angle += 0.05;
+
+		}
+		catch(const char* error){
+			cout<<error<<endl;
+		}
 	}
 	
 	cout<<"PROGRAM RAN SUCCESSFULLY";

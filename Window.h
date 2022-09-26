@@ -50,7 +50,6 @@ HCURSOR LOAD_HCURSOR(const char* cursor_path);
 
 class Window{
 private:
-    const char* class_name;
     unsigned int show_window_command;
 public:
     HWND hwnd = nullptr;
@@ -61,21 +60,24 @@ public:
     bool focused = true;
     bool closed = false;
     Window(const char* class_name, const char* title = "Window", const unsigned int& window_style = WINDOW_STYLE_DEFAULT, const RECTANGLE& window_dimensions = RECTANGLE(480, 270, 960, 540), const bool& client_dimensions = true, const char* icon_path = "");
+    Window();
+    char* class_name();
     void title(const char* title);
+    void icon(const char* icon_path);
 	void show();
 	void hide();
 	void normal();
 	void maximize();
 	void minimize();
 	bool process_messages();
-	void style(const unsigned int& window_style, const bool& client_dimensions = true);
+	void style(const unsigned int& window_style, const bool& menu = false, const bool& client_dimensions = true);
 	void close();
 	Size size();
-    void size(const Size& size);
-    Coordinate position();
-    void position(const Coordinate& coordinate);
-    RECTANGLE dimension();
-    void dimension(const RECTANGLE& rectangle);
+    void size(const Size& size, const bool& menu = false);
+    Coordinate position(const bool& menu = false);
+    void position(const Coordinate& coordinate, const bool& menu = false);
+    RECTANGLE dimension(const bool& menu = false);
+    void dimension(const RECTANGLE& rectangle, const bool& menu = false);
     RECTANGLE window_dimension();
     void window_dimension(const RECTANGLE& rectangle);
     Coordinate cursor_position();
@@ -84,7 +86,10 @@ public:
 	void bottom();
 	void top();
     int message_box(const char* text, const char* caption, const unsigned int& flags);
-    ~Window();
+    bool has_menu();
 };
+
+Window GetWindowFromTitle(const char* title);
+Window GetWindowFromClassName(const char* class_name);
 
 #endif

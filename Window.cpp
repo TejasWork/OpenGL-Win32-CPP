@@ -49,14 +49,14 @@ LRESULT CALLBACK wndproc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam) 
 }
 
 Window::Window(const char* class_name, const char* title, const unsigned int& window_style, const RECTANGLE& window_dimension, const bool& client_dimension, const char* icon_path){
-	this->class_name = class_name;
-
 	WNDCLASSA wndclassa = {};
 	wndclassa.lpszClassName = class_name;
 	wndclassa.hInstance = this->hinstance;
 	wndclassa.lpfnWndProc = wndproc;
-	HANDLE icon = LoadImageA(nullptr, icon_path, IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_LOADFROMFILE);
-	if (icon) wndclassa.hIcon = (HICON)icon;
+	HANDLE handle = LoadImageA(nullptr, icon_path, IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_LOADFROMFILE);
+	if (handle) {
+		wndclassa.hIcon = (HICON) handle;
+	}
 
 	if (!RegisterClassA(&wndclassa)) throw "Window.Window: Error registering class.";
 
@@ -97,7 +97,33 @@ Window::Window(const char* class_name, const char* title, const unsigned int& wi
 	SetWindowLongA(hwnd, GWL_STYLE, window_style);
 }
 
-void Window::style(const unsigned int& window_style, const bool& client_dimension){
+Window::Window(){}
+
+Window GetWindowFromTitle(const char* title){
+	Window window;
+	window.hwnd = FindWindowA(0, title);
+	if (!window.hwnd) throw "FIND_WINDOW: Error finding window";
+	return window;
+}
+
+Window GetWindowFromClassName(const char* class_name){
+	Window window;
+	window.hwnd = FindWindowA(class_name, 0);
+	if (!window.hwnd) throw "FIND_WINDOW: Error finding window";
+	return window;
+}
+
+char* Window::class_name(){
+	char* class_name = (char*) malloc(MAX_PATH * sizeof(char));
+	if (!GetClassNameA(hwnd, class_name, MAX_PATH)) throw "Window.class_name: Error getting class name.";
+	return class_name;
+}
+
+bool Window::has_menu(){
+	return GetMenu(hwnd);
+}
+
+void Window::style(const unsigned int& window_style, const bool& menu, const bool& client_dimension){
 	this->window_style = window_style;
 
 	if (client_dimension) {
@@ -107,7 +133,7 @@ void Window::style(const unsigned int& window_style, const bool& client_dimensio
 
 		SetWindowLongW(hwnd, GWL_STYLE, window_style);
 
-		if (!AdjustWindowRect(&_window_dimension_client_, window_style, 0)) throw "Window.style: Error converting window dimension to client dimension.";
+		if (!AdjustWindowRect(&_window_dimension_client_, window_style, menu)) throw "Window.style: Error converting window dimension to client dimension.";
 		if (!SetWindowPos(hwnd, nullptr, _window_dimension_.left, _window_dimension_.top, _window_dimension_client_.right - _window_dimension_client_.left, _window_dimension_client_.bottom - _window_dimension_client_.top, SWP_FRAMECHANGED)) throw "Window.style: Failed setting window dimension.";
 	}
 	else {
@@ -119,6 +145,13 @@ void Window::style(const unsigned int& window_style, const bool& client_dimensio
 
 void Window::title(const char* title){
     if (!SetWindowTextA(hwnd, title)) throw "Window.title: Error setting title.";
+}
+
+void Window::icon(const char* icon_path){
+	HANDLE handle = LoadImageA(nullptr, icon_path, IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_LOADFROMFILE);
+	if (!handle) throw "Window.icon: Error loading icon.";
+	HICON hicon = (HICON) handle;
+	if (SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM) hicon)) throw "Window.icon: Error setting icon.";
 }
 
 void Window::show(){
@@ -189,7 +222,7 @@ Size Window::size(){
 	return Size(client_size.right, client_size.bottom);
 }
 
-void Window::size(const Size& size){
+void Window::size(const Size& size, const bool& menu){
 	RECT _window_dimension_;
 	if (!GetWindowRect(hwnd, &_window_dimension_)) throw "Window.size: Error getting window dimension.";
 
@@ -198,22 +231,22 @@ void Window::size(const Size& size){
 
 	_window_dimension_.right = size.width + x;
 	_window_dimension_.bottom = size.height + y;
-	if (!AdjustWindowRect(&_window_dimension_, window_style, false)) throw "Window.size: Error converting window dimension to client dimension.";
+	if (!AdjustWindowRect(&_window_dimension_, window_style, menu)) throw "Window.size: Error converting window dimension to client dimension.";
 
 	if (!MoveWindow(hwnd, x, y, _window_dimension_.right - _window_dimension_.left, _window_dimension_.bottom - _window_dimension_.top, false)) throw "Window.size: Error setting window dimension.";
 }
 
-Coordinate Window::position(){
+Coordinate Window::position(const bool& menu){
 	RECT _window_dimension_;
 	if (!GetWindowRect(hwnd, &_window_dimension_)) throw "Window.position: Error getting window dimension.";
 
 	RECT CONSTANT;
-    if (!AdjustWindowRect(&CONSTANT, window_style, false)) throw "Window.position: Error converting window dimension to client dimension."; 
+    if (!AdjustWindowRect(&CONSTANT, window_style, menu)) throw "Window.position: Error converting window dimension to client dimension."; 
     
 	return Coordinate(_window_dimension_.left - CONSTANT.left, _window_dimension_.top - CONSTANT.top);
 }
 
-void Window::position(const Coordinate& coordinate){
+void Window::position(const Coordinate& coordinate, const bool& menu){
 	RECT _window_dimension_;
 	if (!GetWindowRect(hwnd, &_window_dimension_)) throw "Window.position: Error getting window dimension.";
 	
@@ -222,17 +255,17 @@ void Window::position(const Coordinate& coordinate){
 
 	_window_dimension_.left = coordinate.x;
 	_window_dimension_.top = coordinate.y;
-    if (!AdjustWindowRect(&_window_dimension_, window_style, false)) throw "Window.position: Error converting window dimension to client dimension."; 
+    if (!AdjustWindowRect(&_window_dimension_, window_style, menu)) throw "Window.position: Error converting window dimension to client dimension."; 
 
 	if (!MoveWindow(hwnd, _window_dimension_.left, _window_dimension_.top, width, height, false)) throw "Window.position: Error setting window dimension.";
 }
 
-RECTANGLE Window::dimension(){
+RECTANGLE Window::dimension(const bool& menu){
 	RECT _window_dimension_;
 	if (!GetWindowRect(hwnd, &_window_dimension_)) throw "Window.dimension: Error getting window dimension.";
 
     RECT CONSTANT;
-    if (!AdjustWindowRect(&CONSTANT, window_style, false)) throw "Window.dimension: Error converting window dimension to client dimension";
+    if (!AdjustWindowRect(&CONSTANT, window_style, menu)) throw "Window.dimension: Error converting window dimension to client dimension";
 
 	RECTANGLE _return_(
 		_window_dimension_.left - CONSTANT.left,
@@ -243,13 +276,13 @@ RECTANGLE Window::dimension(){
 	return _return_;
 }
 
-void Window::dimension(const RECTANGLE& rectangle){
+void Window::dimension(const RECTANGLE& rectangle, const bool& menu){
 	RECT _window_dimension_;
 	_window_dimension_.left = rectangle.x;
 	_window_dimension_.top = rectangle.y;
 	_window_dimension_.right = rectangle.x + rectangle.width;
 	_window_dimension_.bottom = rectangle.y + rectangle.height;
-	if (!AdjustWindowRect(&_window_dimension_, window_style, false)) throw "Window.dimension: Error converting client dimension to window dimension.";
+	if (!AdjustWindowRect(&_window_dimension_, window_style, menu)) throw "Window.dimension: Error converting client dimension to window dimension.";
 
 	if (!MoveWindow(hwnd,
 		_window_dimension_.left,
@@ -287,14 +320,9 @@ int Window::message_box(const char* text, const char* caption, const unsigned in
 }
 
 void Window::close() {
+	char class_name[MAX_PATH];
+	if (!GetClassNameA(hwnd, class_name, MAX_PATH)) throw "Window.close: Error getting class name.";
 	if (!DestroyWindow(hwnd)) throw "Window.close: Error destroying window.";
 	if (!UnregisterClassA(class_name, hinstance)) throw "Window.close: Error unregistering class.";
 	closed = true;
-}
-
-Window::~Window() {
-	if (!closed) {
-		DestroyWindow(hwnd);
-		UnregisterClassA(class_name, hinstance);
-	}
 }
